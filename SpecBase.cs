@@ -7,6 +7,7 @@ namespace MonoTouch.NUnitExtensions
 	{
 		protected Exception error;
 
+		//runs every method call.. will be nice when TestFixtureSetupAtribute is available in MonoTouch.
 		[SetUp]
 		public void Initalize() {
 			error = null;

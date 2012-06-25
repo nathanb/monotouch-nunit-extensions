@@ -11,7 +11,7 @@ namespace SampleSpec
 
 		public override void Given ()
 		{
-			//establish any defaults, initialization code (runs every test method)
+			//establish any defaults, initialization code (runs every test method until TestFixtureSetup becomes available)
 			result = false;
 		}
 
