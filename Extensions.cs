@@ -36,23 +36,12 @@ namespace MonoTouch.NUnitExtensions
 		public static void ShouldBeNull(this object value) {if (value == null) Assert.Pass (); else Assert.Fail ("should be null but is not."); }
 		public static void ShouldNotBeNull(this object value) {if (value != null) Assert.Pass (); else Assert.Fail ("should not be null but is."); }
 
-		public static void ShouldEqual(this object arg, object to) {if (arg.Equals (to)) Assert.Pass (); else Assert.Fail ("{0} should equal {1}", arg, to);}
-		public static void ShouldNotEqual(this object arg, object to) {if (!arg.Equals (to)) Assert.Pass (); else Assert.Fail ("{0} should equal {1}", arg, to);}
+		public static void ShouldBeOfType<T>(object check) {if (check.GetType () == typeof(T)) Assert.Pass (); else Assert.Fail ("object of type: {0} should be of type: {1}", check.GetType (), typeof(T)); }
 
-		public static void ShouldBeGreaterThan(this int arg, int limit) { if (arg > limit) Assert.Pass (); else Assert.Fail ("{0} should be greater than {1}", arg, limit); }
-		public static void ShouldBeLessThan(this int arg, int limit) {if (arg < limit) Assert.Pass (); else Assert.Fail ("{0} should be less than {1}", arg, limit);}
-		public static void ShouldBeGreaterThanOrEqualTo(this int arg, int limit) {if (arg >= limit) Assert.Pass (); else Assert.Fail ("{0} should be greater than or equal to {1}", arg, limit);}
-		public static void ShouldBeLessThanOrEqualTo(this int arg, int limit) {if (arg <= limit) Assert.Pass (); else Assert.Fail ("{0} should be less than or equal to {1}", arg, limit);}
-
-		public static void ShouldBeGreaterThan(this double arg, double limit) { if (arg > limit) Assert.Pass (); else Assert.Fail ("{0} should be greater than {1}", arg, limit); }
-		public static void ShouldBeLessThan(this double arg, double limit) {if (arg < limit) Assert.Pass (); else Assert.Fail ("{0} should be less than {1}", arg, limit);}
-		public static void ShouldBeGreaterThanOrEqualTo(this double arg, double limit) {if (arg >= limit) Assert.Pass (); else Assert.Fail ("{0} should be greater than or equal to {1}", arg, limit);}
-		public static void ShouldBeLessThanOrEqualTo(this double arg, double limit) {if (arg <= limit) Assert.Pass (); else Assert.Fail ("{0} should be less than or equal to {1}", arg, limit);}
-
-		public static void ShouldBeGreaterThan(this decimal arg, decimal limit) { if (arg > limit) Assert.Pass (); else Assert.Fail ("{0} should be greater than {1}", arg, limit); }
-		public static void ShouldBeLessThan(this decimal arg, decimal limit) {if (arg < limit) Assert.Pass (); else Assert.Fail ("{0} should be less than {1}", arg, limit);}
-		public static void ShouldBeGreaterThanOrEqualTo(this decimal arg, decimal limit) {if (arg >= limit) Assert.Pass (); else Assert.Fail ("{0} should be greater than or equal to {1}", arg, limit);}
-		public static void ShouldBeLessThanOrEqualTo(this decimal arg, decimal limit) {if (arg <= limit) Assert.Pass (); else Assert.Fail ("{0} should be less than or equal to {1}", arg, limit);}
+		public static void ShouldBeGreaterThan<T>(this T arg, T limit) where T : IComparable { if (arg.CompareTo (limit) > 0) Assert.Pass (); else Assert.Fail ("{0} should be greater than {1}", arg, limit); }
+		public static void ShouldBeLessThan<T>(this T arg, T limit) where T : IComparable { if (arg.CompareTo (limit) < 0) Assert.Pass (); else Assert.Fail ("{0} hould be less than {1}", arg, limit); }
+		public static void ShouldEqual<T>(this T arg, T limit) where T : IComparable { if (arg.CompareTo (limit) == 0) Assert.Pass (); else Assert.Fail ("0} should equal {1}", arg, limit); }
+		public static void ShouldNotEqual<T>(this T arg, T limit) where T : IComparable { if (arg.CompareTo (limit) != 0) Assert.Pass (); else Assert.Fail ("0} should not equal {1}", arg, limit); }
 	}
 }
 
